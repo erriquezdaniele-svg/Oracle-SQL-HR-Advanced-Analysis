@@ -70,7 +70,7 @@ on (e.salary = x.stipendio and e.department_id = x.department_id)
 
 select concat(e.first_name || ' ', e.last_name) as nome_cognome_impiegato, e.job_id,
           d.department_name, (case
-                                                when months_between(e.hire_date, m.hire_date) >= 60 then 'VETERANO'
+                                                when months_between(m.hire_date, e.hire_date) >= 60 then 'VETERANO'
                                                 when e.hire_date > m.hire_date then 'RECENTE'
                                                 else 'COETANEO AZIENDALE'
                                                 end) stato_anzianita, 
@@ -115,6 +115,7 @@ on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
+
 
 
 
