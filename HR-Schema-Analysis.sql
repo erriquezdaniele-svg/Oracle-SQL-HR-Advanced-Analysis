@@ -103,7 +103,8 @@ order by e.hire_date desc;
 select concat(e.first_name || ' ', e.last_name) nome_cognome, d.department_name,
           e.salary, round((select avg(salary) from employees), 2) media_aziendale,
           case
-                 when e.salary > (select avg(salary) from employees e2 where e2.department_id = e.department_id) then 'ALTO'
+                 when e.salary > (select avg(salary) from employees e2 where e2.department_id = e.department_id) 
+                 and e.salary > (select avg(salary) from employees) then 'ALTO'
                  when e.salary < (select avg(salary) from employees e2 where e2.department_id = e.department_id) 
                  and e.salary > (select avg(salary) from employees) then 'MEDIO'
                  else 'BASSO'
@@ -115,8 +116,3 @@ on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
-
-
-
-
-
