@@ -4,7 +4,7 @@
 
 select d.department_name, to_char(avg(e.salary), '$99999.99') as salario_medio
 from departments d
-left outer join employees e
+join employees e
 on (d.department_id = e.department_id)
 where d.department_id in (select department_id
                             from departments d, locations l
@@ -115,6 +115,7 @@ on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
+
 
 
 
