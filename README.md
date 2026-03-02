@@ -37,4 +37,4 @@ Aggregazione di dati su più tabelle (`JOIN` multipli) per analizzare le medie s
 
 \*\*Strumenti utilizzati:\*\* Oracle SQL Developer / SQL\*Plus / Toad for Oracle
 
-![Risultato Query in Toad](screen.jpg)
+![Risultato Query in Toad](screen.png)
