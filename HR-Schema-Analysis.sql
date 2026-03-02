@@ -28,7 +28,7 @@ from employees e
 left outer join (select department_id, avg(salary) media
                     from employees
                     group by department_id)  x
-on (x.department_id = e. department_id)
+on (x.department_id = e.department_id)
 left outer join departments d
 on (d.department_id = e.department_id) -- da osservare che il collegamento delle colonne 
 --department_id è tra employees e departments
@@ -117,6 +117,7 @@ on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
+
 
 
 
