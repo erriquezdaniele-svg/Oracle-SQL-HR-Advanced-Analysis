@@ -1,5 +1,6 @@
--- Trovo il nome del dipartimento (DEPARTMENT_NAME) e la media degli stipendi (SALARY) per ogni dipartimento. Però, voglio vedere solo i 
--- dipartimenti che hanno una media stipendi superiore a 8000 e che si trovano negli Stati Uniti (COUNTRY_ID = 'US').
+-- Trovo il nome del dipartimento (DEPARTMENT_NAME) e la media degli stipendi (SALARY) per ogni dipartimento. 
+-- PerÃ², voglio vedere solo i dipartimenti che hanno una media stipendi superiore a 8000 e che si trovano 
+-- negli Stati Uniti (COUNTRY_ID = 'US').
 
 select d.department_name, to_char(avg(e.salary), '$99999.99') as salario_medio
 from departments d
@@ -18,7 +19,7 @@ having avg(e.salary) > 8000;
 -- Il suo stipendio attuale.
 -- La media stipendi del suo specifico dipartimento.
 -- La differenza tra il suo stipendio e la media del dipartimento.
--- Voglio vedere nel report solo i dipendenti che guadagnano più del doppio della media del loro dipartimento.
+-- Voglio vedere nel report solo i dipendenti che guadagnano piÃ¹ del doppio della media del loro dipartimento.
 
 select concat(e.first_name || ' ', e.last_name) as nome_cognome,
           d.department_name, e.salary, round(x.media, 2) as "Media",
@@ -36,14 +37,14 @@ on (d.department_id = x.department_id);
 -- Il nome e cognome del dipendente.
 -- Il suo stipendio.
 -- Il numero di colleghi nello stesso dipartimento che guadagnano meno di lui.
--- Voglio vedere nel report solo i dipendenti che hanno lo stipendio più alto del loro dipartimento (il "Massimo").
+-- Voglio vedere nel report solo i dipendenti che hanno lo stipendio piÃ¹ alto del loro dipartimento (il "Massimo").
 -- Se un dipartimento non ha dipendenti, non deve apparire.
 
 select x.department_name, e.first_name, e.last_name, x.stipendio,
           (select count(*)
           from employees e2
           where e2.department_id = e.department_id
--- questa where è fondamentale per contare esclusivamente nel dipartimento corretto 
+-- questa where Ã¨ fondamentale per contare esclusivamente nel dipartimento corretto 
           and e2.salary < x.stipendio) as conteggio_inferiori -- sotto query a riga singola nel select
 from (select department_id, department_name, max(salary) as stipendio
         from employees 
@@ -52,19 +53,19 @@ from (select department_id, department_name, max(salary) as stipendio
         group by department_id, department_name) x -- sottoquery a riga multipla nel from
 join employees e
 on (e.salary = x.stipendio and e.department_id = x.department_id)
--- questa clausola è fondamentale perche distigue per dipartimento non solo per stipendio
+-- questa clausola Ã¨ fondamentale perche distigue per dipartimento non solo per stipendio
 
 -- Scrivi una query che estragga:
 -- Il Nome e Cognome del dipendente in un'unica colonna (es. "Steven King").
 -- Il Job ID del dipendente.
 -- Il Nome del Dipartimento.
--- Una colonna chiamata "Stato_Anzianità":
--- Deve scrivere 'VETERANO' se il dipendente è stato assunto almeno 5 anni prima del suo manager.
--- Deve scrivere 'RECENTE' se è stato assunto dopo il suo manager.
+-- Una colonna chiamata "Stato_AnzianitÃ ":
+-- Deve scrivere 'VETERANO' se il dipendente Ã¨ stato assunto almeno 5 anni prima del suo manager.
+-- Deve scrivere 'RECENTE' se Ã¨ stato assunto dopo il suo manager.
 -- Deve scrivere 'COETANEO AZIENDALE' in tutti gli altri casi.
 -- Il Nome e Cognome del Manager.
 -- Escludi dal report i dipendenti che lavorano nel dipartimento 'IT' o 'Sales'.
--- Ordina il risultato per data di assunzione del dipendente (dal più anziano).
+-- Ordina il risultato per data di assunzione del dipendente (dal piÃ¹ anziano).
 
 select concat(e.first_name || ' ', e.last_name) as nome_cognome_impiegato, e.job_id,
           d.department_name, (case
@@ -92,8 +93,8 @@ order by e.hire_date desc;
 -- Il suo Stipendio.
 -- La Media Aziendale (totale di tutti i dipendenti).
 -- Una colonna chiamata "Livello_Costo":
--- 'ALTO': se lo stipendio è superiore alla media del suo dipartimento E superiore alla media aziendale.
--- 'MEDIO': se lo stipendio è superiore alla media aziendale ma inferiore a quella del suo dipartimento.
+-- 'ALTO': se lo stipendio Ã¨ superiore alla media del suo dipartimento E superiore alla media aziendale.
+-- 'MEDIO': se lo stipendio Ã¨ superiore alla media aziendale ma inferiore a quella del suo dipartimento.
 -- 'BASSO': in tutti gli altri casi.
 -- La Differenza tra lo stipendio del dipendente e la media del suo dipartimento (arrotondata a 2 decimali).
 -- Escludi i dipendenti che non hanno un manager (i "Top Boss").
@@ -112,4 +113,5 @@ left outer join departments d
 on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cio calcolare la sottoquery a singola riga 
+
 -- della select in un join da unire alla tabella principale
