@@ -51,7 +51,7 @@ from (select department_id, department_name, max(salary) as stipendio
         from employees 
         join departments
         using (department_id)
-        group by department_id, department_name) x -- sottoquery a riga multipla nel from
+        group by department_id, department_name) x
 join employees e
 on (e.salary = x.stipendio and e.department_id = x.department_id)
 -- questa clausola è fondamentale perche distigue per dipartimento non solo per stipendio
@@ -116,3 +116,4 @@ on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
+
