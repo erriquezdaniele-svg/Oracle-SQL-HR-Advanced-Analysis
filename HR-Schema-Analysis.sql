@@ -8,7 +8,7 @@ join employees e
 on (d.department_id = e.department_id)
 where d.department_id in (select department_id
                             from departments d, locations l
-                            where (d.location_id (+) = l.location_id)
+                            where (d.location_id = l.location_id)
                             and l.country_id = 'US')
 group by d.department_name
 having avg(e.salary) > 8000;
@@ -116,4 +116,5 @@ on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
+
 
