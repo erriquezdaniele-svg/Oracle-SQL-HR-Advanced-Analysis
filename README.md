@@ -1,5 +1,5 @@
 # Oracle-SQL-HR-Advanced-Analysis
-Analisi dati avanzata su schema HR Oracle: Sottoquery correlate, Join complessi e logica di business senza Window Functions.
+Analisi dati avanzata su schema HR Oracle: Sottoquery, Join complessi e logica di business senza Window Functions.
 
 \# Oracle SQL: Advanced HR Data Analysis Portfolio 
 
@@ -7,11 +7,11 @@ Questo repository raccoglie una serie di analisi avanzate condotte sullo schema 
 
 \## Competenze Tecniche Dimostrate
 
-\* \*\*Sottoquery Avanzate:\*\* Utilizzo di sottoquery scalari correlate (nella `SELECT`).
+\* \*\*Sottoquery Avanzate:\*\* Utilizzo di sottoquery.
 
 \* \*\*Logica Condizionale:\*\* Implementazione di istruzioni `CASE WHEN` per la categorizzazione dei dati.
 
-\* \*\*Integrità e Data Cleaning:\*\* Gestione proattiva dei valori `NULL` e delle criticità legate all'operatore `NOT IN`.
+\* \*\*Integrità e Data Cleaning:\*\* Gestione dei valori `NULL` e delle criticità legate all'operatore `NOT IN`.
 
 \* \*\*Analisi Statistica:\*\* Calcolo di medie ponderate, gap salariali e peer analysis senza l'ausilio di Window Functions.
 
