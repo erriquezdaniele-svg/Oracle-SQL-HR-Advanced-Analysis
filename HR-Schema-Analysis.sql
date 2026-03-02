@@ -55,17 +55,17 @@ join employees e
 on (e.salary = x.stipendio and e.department_id = x.department_id)
 -- questa clausola è fondamentale perche distigue per dipartimento non solo per stipendio
 
--- Scrivi una query che estragga:
+-- Scrivo una query che estragga:
 -- Il Nome e Cognome del dipendente in un'unica colonna (es. "Steven King").
 -- Il Job ID del dipendente.
 -- Il Nome del Dipartimento.
 -- Una colonna chiamata "Stato_Anzianità":
--- Deve scrivere 'VETERANO' se il dipendente è stato assunto almeno 5 anni prima del suo manager.
--- Deve scrivere 'RECENTE' se è stato assunto dopo il suo manager.
--- Deve scrivere 'COETANEO AZIENDALE' in tutti gli altri casi.
+-- Dove scrivere 'VETERANO' se il dipendente è stato assunto almeno 5 anni prima del suo manager;
+-- Dove scrivere 'RECENTE' se è stato assunto dopo il suo manager;
+-- Dove scrivere 'COETANEO AZIENDALE' in tutti gli altri casi.
 -- Il Nome e Cognome del Manager.
--- Escludi dal report i dipendenti che lavorano nel dipartimento 'IT' o 'Sales'.
--- Ordina il risultato per data di assunzione del dipendente (dal più anziano).
+-- Escludo dal report i dipendenti che lavorano nel dipartimento 'IT' o 'Sales'.
+-- Ordino il risultato per data di assunzione del dipendente (dal più anziano).
 
 select concat(e.first_name || ' ', e.last_name) as nome_cognome_impiegato, e.job_id,
           d.department_name, (case
@@ -87,17 +87,17 @@ where d.department_name not in (select department_name
 or d.department_id is null -- quindi si aggiunge questa clausola or per evitarlo
 order by e.hire_date desc;
 
--- Scrivi una query che estragga:
+-- Scrivo una query che estragga:
 -- Nome e Cognome del dipendente.
 -- Nome del Dipartimento.
 -- Il suo Stipendio.
 -- La Media Aziendale (totale di tutti i dipendenti).
 -- Una colonna chiamata "Livello_Costo":
--- 'ALTO': se lo stipendio è superiore alla media del suo dipartimento E superiore alla media aziendale.
+-- 'ALTO': se lo stipendio è superiore alla media del suo dipartimento e superiore alla media aziendale.
 -- 'MEDIO': se lo stipendio è superiore alla media aziendale ma inferiore a quella del suo dipartimento.
 -- 'BASSO': in tutti gli altri casi.
 -- La Differenza tra lo stipendio del dipendente e la media del suo dipartimento (arrotondata a 2 decimali).
--- Escludi i dipendenti che non hanno un manager (i "Top Boss").
+-- Esclude i dipendenti che non hanno un manager (i "Top Boss").
 
 select concat(e.first_name || ' ', e.last_name) nome_cognome, d.department_name,
           e.salary, round((select avg(salary) from employees), 2) media_aziendale,
@@ -115,3 +115,4 @@ where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cio calcolare la sottoquery a singola riga 
 
 -- della select in un join da unire alla tabella principale
+
