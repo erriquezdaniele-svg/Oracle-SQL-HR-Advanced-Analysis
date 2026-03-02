@@ -112,7 +112,7 @@ from employees e
 left outer join departments d
 on (e.department_id = d.department_id)
 where e.manager_id is not null;
--- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cio calcolare la sottoquery a singola riga 
-
+-- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
+
 
