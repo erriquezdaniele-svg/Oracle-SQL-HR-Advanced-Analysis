@@ -25,7 +25,8 @@ select concat(e.first_name || ' ', e.last_name) as nome_cognome,
           d.department_name, e.salary, round(x.media, 2) as "Media",
           round((e.salary - x.media), 2) as differenza
 from employees e
-left outer join (select department_id, avg(salary) media
+join (select department_id, avg(salary) media -- se usassi il left outer join questo si trasformerebbe
+-- in un inner join a causa del filtro where
                     from employees
                     group by department_id)  x
 on (x.department_id = e.department_id)
@@ -117,6 +118,7 @@ on (e.department_id = d.department_id)
 where e.manager_id is not null;
 -- si potrebbe, per rendere la query piu efficiente utilizzare una inline view cioè calcolare la sottoquery a singola riga 
 -- della select in un join da unire alla tabella principale
+
 
 
 
