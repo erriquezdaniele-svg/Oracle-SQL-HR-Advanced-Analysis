@@ -54,7 +54,7 @@ The provided .sql file is compatible with any Oracle database instance containin
 
 Open the script in Oracle SQL Developer or TOAD.
 
-![Risultato di una Query](Toad _For_Oracle.png)
+![Risultato di una Query]([Toad _For_Oracle.png](https://github.com/erriquezdaniele-svg/Oracle-SQL-HR-Advanced-Analysis/blob/main/Toad%20_For_Oracle.png))
 
 Execute the queries to see the formatted output.
 
